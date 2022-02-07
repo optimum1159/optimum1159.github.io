@@ -17,7 +17,6 @@
 
     <div class="container">
         <form id="kuy">
-            <input type="file" name="image">
             <input type="text" name="kuy" class="from-control">
             <button type="submit">ส่ง</button>
         </form>
@@ -50,15 +49,14 @@
         $('#kuy').on('submit', function(e) {
             e.preventDefault()
             let message = $(this).find('input[name=message]').val()
-            let image = $(this).find('input[name-image]')[0].files[0]
 
             liff.sendMessages([{
                 type: 'text',
-                text: message
+                text: profile.displayName + ' ส่ง ' + message
             }, {
                 type: 'image',
-                originalContentURL: URL.createObjectURL(image),
-                previewImageURL: URL.createObjectURL(image)
+                originalContentURL: profile.pictureUrl,
+                previewImageURL: profile.pictureUrl
 
             }]).then(() => {
                 liff.closeWindow();
