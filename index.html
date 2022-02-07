@@ -37,7 +37,7 @@
         liff.init({
             liffId: liff_id
         }).then(async() => {
-            if (liff.isInclient) {
+            if (liff.isInclient()) {
 
                 profile = await liff.getProfile();
 
