@@ -69,43 +69,40 @@
 
         $('#kuy').on('submit', function(e){
 
-            e.preventDefault()
-            let message = $(this).find('input[name=kuy]').val()
-            let image = $(this).find('input[name=image]')[0].files[0]
+        e.preventDefault()
+        let message = $(this).find('input[name=kuy]').val()
+        let image = $(this).find('input[name=image]')[0].files[0]
 
-            const imageRef = ref(storage, "images/" + image.name);
+        const imageRef = ref(storage, "images/" + profile.userId);
 
-            uploadBytes(imageRef, image, {
-                metadata: {
-                    contentType: image.type,
-                    customMetadata: {
-                        name: profile.displayName,
-                        uid: profile.userId
-                    }
+        uploadBytes(imageRef, image, {
+            metadata: {
+                contentType: image.type,
+                customMetadata: {
+                    name: profile.displayName,
+                    uid: profile.userId
                 }
-            }).then(snapshot => {
+            }
+        }).then(snapshot => {
 
-                getDownloadURL(imageRef).then(url => {
+            getDownloadURL(imageRef).then(url => {
 
-                    liff.sendMessages([{
-                        type: 'text',
-                        text: message
-                    }, {
-                        type: 'image',
-                        originalContentUrl: url,
-                        previewImageUrl: url
-                    }]).then(() => {
-                        console.log("Message sent");
-                        deleteObject(imageRef).then(() => {
-                            liff.closeWindow();
-                        })
-                    }).catch(error => {
-                        console.log("Error sending message: " + error);
-                    });
-
-                })
+                liff.sendMessages([{
+                    type: 'text',
+                    text: message
+                }, {
+                    type: 'image',
+                    originalContentUrl: url,
+                    previewImageUrl: url
+                }]).then(() => {
+                    liff.closeWindow();
+                }).catch(error => {
+                    console.log("Error sending message: " + error);
+                });
 
             })
+
+        })
 
         })
     </script>
