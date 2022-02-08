@@ -70,8 +70,8 @@
         $('#kuy').on('submit', function(e){
 
             e.preventDefault()
-            let message = $(this).find('input[name=message]').val()
-            let image = $(this).find('input[name=kuy]')[0].files[0]
+            let message = $(this).find('input[name=kuy]').val()
+            let image = $(this).find('input[name=message]')[0].files[0]
 
             const imageRef = ref(storage, "images/" + image.name);
 
