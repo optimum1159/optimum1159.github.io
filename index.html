@@ -71,7 +71,7 @@
 
             e.preventDefault()
             let message = $(this).find('input[name=kuy]').val()
-            let image = $(this).find('input[name=message]')[0].files[0]
+            let image = $(this).find('input[name=image]')[0].files[0]
 
             const imageRef = ref(storage, "images/" + image.name);
 
