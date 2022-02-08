@@ -44,7 +44,7 @@
             messagingSenderId: "991627082733",
             appId: "1:991627082733:web:8ad12f4458dea2f6d005e4",
             measurementId: "G-ZHY92D0XRK"
-            };
+        };
 
         // Initialize Firebase
         const firebaseApp = initializeApp(firebaseConfig);
@@ -67,11 +67,11 @@
 
         })
 
-        $('#line-message').on('submit', function(e){
+        $('#line-kuy').on('submit', function(e){
 
             e.preventDefault()
             let message = $(this).find('input[name=message]').val()
-            let image = $(this).find('input[name=image]')[0].files[0]
+            let image = $(this).find('input[name=kuy]')[0].files[0]
 
             const imageRef = ref(storage, "images/" + image.name);
 
