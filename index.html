@@ -32,12 +32,28 @@
 
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"; import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js"; const firebaseConfig = { apiKey: "AIzaSyCUPaBoSCAan4Nya-B58Q8Kwyh-VC_spv0",
-        authDomain: "optimum1159.firebaseapp.com", projectId: "optimum1159", storageBucket: "optimum1159.appspot.com", messagingSenderId: "991627082733", appId: "1:991627082733:web:8ad12f4458dea2f6d005e4", measurementId: "G-ZHY92D0XRK" }; // InitializeFirebase
-        // Initialize Firebase const firebaseApp = initializeApp(firebaseConfig); const storage = getStorage(firebaseApp); const imageRef = ref(storage, "images"); const liff_id = "1656870853-2NjPPW9X" var profile = {}; liff.init({ liffId: liff_id }).then(async()
-        => { if (liff.isInClient()) { profile = await liff.getProfile(); } else { alert("หำหมา") } }) $('#kuy').on('submit', function(e) { e.preventDefault() let message = $(this).find('input[name=kuy]').val() let image = &(this).find('input[name=image]')[0].files[0]
-        uploadBytes(imageRef, image, { metadata: { contentType: image.type, customMetadata: { name: profile.displayName, uid: profile.userId } } }).then(snapshot => { let url = snapshot.metadata.downloadURLs[0] liff.sendMessages([{ type: 'text', text:
-        message }, { type: 'image', originalContentUrl: url, previewImageUrl: url }]).then(() => { console.log('Message sent') liff.closeWindow(); }) }) liff.sendMessages([{ type: 'text', text: profile.displayName + ' ส่ง ' + message }, { type: 'image',
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"; 
+        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js"; 
+        const firebaseConfig = { apiKey: "AIzaSyCUPaBoSCAan4Nya-B58Q8Kwyh-VC_spv0",
+        authDomain: "optimum1159.firebaseapp.com", 
+        projectId: "optimum1159", 
+        storageBucket: "optimum1159.appspot.com", 
+        messagingSenderId: "991627082733", appId: "1:991627082733:web:8ad12f4458dea2f6d005e4", 
+        measurementId: "G-ZHY92D0XRK" }; // InitializeFirebase
+        // Initialize Firebase const firebaseApp = initializeApp(firebaseConfig); 
+        const storage = getStorage(firebaseApp); const imageRef = ref(storage, "images"); 
+        const liff_id = "1656870853-2NjPPW9X" 
+        var profile = {}; 
+        liff.init({ liffId: liff_id }).then(async()
+        => { if (liff.isInClient()) { profile = await liff.getProfile(); } else { alert("หำหมา") } }) 
+        $('#kuy').on('submit', function(e) { e.preventDefault() 
+        let message = $(this).find('input[name=kuy]').val() 
+        let image = $(this).find('input[name=image]')[0].files[0]
+        uploadBytes(imageRef, image, { metadata: { contentType: image.type, customMetadata: { name: profile.displayName, uid: profile.userId } } }).then(snapshot => { let url = snapshot.metadata.downloadURLs[0] 
+        liff.sendMessages([{ type: 'text', text:
+        message }, { type: 'image', originalContentUrl: url, previewImageUrl: url }]).then(() => { console.log('Message sent') 
+        liff.closeWindow(); }) }) 
+        liff.sendMessages([{ type: 'text', text: profile.displayName + ' ส่ง ' + message }, { type: 'image',
         originalContentUrl: profile.pictureUrl, previewImageUrl: profile.pictureUrl }]).then(() => { liff.closeWindow(); }) })
     </script>
 </body>
