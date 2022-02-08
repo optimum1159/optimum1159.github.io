@@ -33,19 +33,19 @@
 
     <script type="module">
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"; 
-        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js"; 
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCUPaBoSCAan4Nya-B58Q8Kwyh-VC_spv0",
-            authDomain: "optimum1159.firebaseapp.com", 
-            projectId: "optimum1159", 
-            storageBucket: "optimum1159.appspot.com", 
+            authDomain: "optimum1159.firebaseapp.com",
+            projectId: "optimum1159",
+            storageBucket: "optimum1159.appspot.com",
             messagingSenderId: "991627082733",
-            appId: "1:991627082733:web:8ad12f4458dea2f6d005e4", 
+            appId: "1:991627082733:web:8ad12f4458dea2f6d005e4",
             measurementId: "G-ZHY92D0XRK"
-        };
-        
+            };
+
         // Initialize Firebase
         const firebaseApp = initializeApp(firebaseConfig);
         const storage = getStorage(firebaseApp);
@@ -85,7 +85,7 @@
                 }
             }).then(snapshot => {
 
-                getDownloadURL(snapshot).then(url => {
+                getDownloadURL(imageRef).then(url => {
 
                     liff.sendMessages([{
                         type: 'text',
